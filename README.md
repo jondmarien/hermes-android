@@ -75,21 +75,21 @@ Native Android client for [Hermes Agent](https://github.com/NousResearch/hermes-
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                      Hermes Android App                      │
+│                      Hermes Android App                     │
 ├──────────────────┬──────────────────────────────────────────┤
-│   Remote Mode    │            Local Mode                     │
+│   Remote Mode    │            Local Mode                    │
 ├──────────────────┼──────────────────────────────────────────┤
-│  Retrofit/OkHttp │           TermuxManager                   │
+│  Retrofit/OkHttp │           TermuxManager                  │
 │  SSE Streaming   │   ┌─────────────────────────────────┐    │
 │  /v1/chat/*      │   │  Termux Process (hermes gateway)│    │
 │  /v1/responses   │   │  API Server on localhost:8642   │    │
 │  /v1/models      │   └─────────────────────────────────┘    │
-│  /v1/capabilities│                                            │
+│  /v1/capabilities│                                          │
 └──────────────────┴──────────────────────────────────────────┘
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    Shared Layer                              │
+│                    Shared Layer                             │
 │  Room Database (Sessions, Chats, RemoteConfigs)             │
 │  DataStore Preferences (Mode, URLs, Keys, Theme)            │
 │  Repository Pattern + UseCases                              │
@@ -98,7 +98,7 @@ Native Android client for [Hermes Agent](https://github.com/NousResearch/hermes-
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    Presentation Layer                        │
+│                    Presentation Layer                       │
 │  Jetpack Compose UI (Material 3)                            │
 │  ViewModels + StateFlow                                     │
 │  Navigation Compose                                         │
