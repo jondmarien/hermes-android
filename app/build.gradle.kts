@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kapt)
     alias(libs.plugins.hilt)
+    id("io.gitlab.arturbosch.detekt") version "1.23.6" apply false
+    id("org.jlleitschuh.gradle.ktlint") version "11.1.0" apply false
 }
 
 android {
