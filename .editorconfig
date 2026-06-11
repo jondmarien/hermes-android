@@ -1,0 +1,24 @@
+# ktlint Configuration for Hermes Android
+
+# Editor settings
+indent_size = 4
+continuation_indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Line length
+max_line_length = 120
+
+# Import ordering
+import_ordering = [android, androidx, com, kotlinx, okhttp, retrofit, dagger, io, org, java, javax, ""]
+
+# Disabled rules
+disabled_rules = [
+  "no-wildcard-imports",
+  "final-newline",
+  "no-empty-first-line-in-method-block",
+  "no-trailing-whitespace"
+]
+
+# Android specific
+android_studio_compatible = true

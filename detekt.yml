@@ -1,0 +1,121 @@
+# Detekt Configuration for Hermes Android
+
+build:
+  maxIssues: 20
+  excludeCorrectable: false
+  weights:
+    complexity: 2
+    style: 1
+    comments: 1
+    emptyBlocks: 1
+
+config:
+  validation: true
+  warnsAsErrors: false
+
+formatting:
+  MaximumLineLength:
+    maxLineLength: 120
+    excludePackageStatements: true
+    excludeImportStatements: true
+  CommentSpacing:
+    ignoreCommentEndingInPeriod: true
+  FinalNewline:
+    enabled: true
+  Indentation:
+    indentSize: 4
+    continuationIndentSize: 4
+    trimLeadingWhitespace: true
+  TrailingWhitespace:
+    enabled: true
+  NewlineAtEndOfFile:
+    enabled: true
+
+style:
+  MagicNumber:
+    ignoreNumbers: '-1,0,1,2,3,4,5,6,7,8,9,10,16,24,32,48,64,100,1000'
+    ignorePropertyDeclaration: true
+    ignoreConstantDeclaration: true
+    ignoreFunctionArgument: true
+    ignoreNamedArgument: true
+  WildcardImport:
+    enabled: false
+  UnusedImports:
+    enabled: true
+  ReturnCount:
+    max: 6
+  TooManyFunctions:
+    thresholdInFiles: 11
+    thresholdInClasses: 11
+    ignoreDeprecated: false
+  NestedClassesVisibility:
+    enabled: true
+  UtilityClassWithPublicConstructor:
+    enabled: true
+  BooleanExpressionComplexity:
+    enabled: true
+
+complexity:
+  LongMethod:
+    threshold: 60
+  LongParameterList:
+    threshold: 6
+    ignoreDefaultValues: true
+    ignoreDataClasses: true
+    ignoreAnnotatedParameter: ['Inject', 'Qualifier']
+  MethodOverloading:
+    enabled: true
+  ComplexCondition:
+    threshold: 4
+  NestedBlockDepth:
+    threshold: 5
+  TooManyMethods:
+    threshold: 20
+  TooManyProperties:
+    threshold: 20
+
+exceptions:
+  TooGenericExceptionCaught:
+    enabled: true
+  ExceptionRaisedInUnexpectedLocation:
+    enabled: true
+  SwallowedException:
+    enabled: true
+    ignoredExceptionTypes: ['CancellationException', 'InterruptedException']
+  NotImplementedDeclaration:
+    enabled: true
+
+comments:
+  UndocumentedPublicClass:
+    enabled: false
+  UndocumentedPublicFunction:
+    enabled: false
+
+potential-bugs:
+  UnreachableCode:
+    enabled: true
+  UnusedPrivateMember:
+    enabled: true
+    ignoreAnnotated: ['Preview', 'Composable']
+  ViewModelClassCannotBeExtended:
+    enabled: true
+
+naming:
+  FunctionName:
+    enabled: true
+    pattern: '^[a-z][a-zA-Z0-9]*$'
+  VariableName:
+    enabled: true
+    pattern: '^[a-z][a-zA-Z0-9]*$'
+  ClassName:
+    enabled: true
+    pattern: '^[A-Z][a-zA-Z0-9]*$'
+  PackageName:
+    enabled: true
+    pattern: '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+
+formatting:
+  import-ordering:
+    enabled: true
+    layout: 'star'
+    groups: ['android', 'androidx', 'com', 'kotlin', 'coil', 'dagger', 'kotlinx', 'okhttp', 'retrofit', '(javax|org)', '(.*)']
