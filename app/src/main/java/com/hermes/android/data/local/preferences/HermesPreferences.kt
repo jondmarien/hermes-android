@@ -10,9 +10,10 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.decodeFromString
-import kotlinx.serialization.json.encodeToString
+import com.hermes.android.domain.model.RemoteConfig
 
 class HermesPreferences @Inject constructor(
     private val context: Context
@@ -194,4 +195,55 @@ class HermesPreferences @Inject constructor(
     val remoteConfigsJsonFlow: Flow<String> = dataStore.data
         .map { it[KEY_REMOTE_CONFIGS_JSON] ?: "[]" }
         .distinctUntilChanged()
+
+    // Remote Config serialization
+    private val json = Json {
+        ignoreUnknownKeys = true
+        isLenient = true
+    }
+
+    suspend fun getRemoteConfigs(): List<RemoteConfig> {
+        val jsonString = dataStore.data
+            .map { it[KEY_REMOTE_CONFIGS_JSON] ?: "[]" }
+            .first()
+        return try {
+            json.decodeFromString<List<RemoteConfig>>(jsonString)
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
+    suspend fun saveRemoteConfigs(configs: List<RemoteConfig>) {
+        val jsonString = json.encodeToString(configs)
+        dataStore.edit { it[KEY_REMOTE_CONFIGS_JSON] = jsonString }
+    }
+
+    suspend fun addRemoteConfig(config: RemoteConfig) {
+        val current = getRemoteConfigs()
+        saveRemoteConfigs(current + config)
+    }
+
+    suspend fun updateRemoteConfig(config: RemoteConfig) {
+        val current = getRemoteConfigs()
+        val updated = current.map { if (it.id == config.id) config else it }
+        saveRemoteConfigs(updated)
+    }
+
+    suspend fun deleteRemoteConfig(id: Long) {
+        val current = getRemoteConfigs()
+        val updated = current.filter { it.id != id }
+        saveRemoteConfigs(updated)
+    }
+
+    suspend fun setDefaultRemoteConfig(id: Long) {
+        val current = getRemoteConfigs()
+        val updated = current.map {
+            if (it.id == id) it.copy(isDefault = true) else it.copy(isDefault = false)
+        }
+        saveRemoteConfigs(updated)
+    }
+
+    suspend fun getActiveRemoteConfig(): RemoteConfig? {
+        return getRemoteConfigs().firstOrNull { it.isDefault }
+    }
 }
