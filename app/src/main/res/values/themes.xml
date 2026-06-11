@@ -1,0 +1,88 @@
+<resources>
+    <!-- Base application theme -->
+    <style name="Theme.HermesAndroid" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorPrimaryVariant">@color/md_theme_light_primaryContainer</item>
+        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/md_theme_light_secondary</item>
+        <item name="colorSecondaryVariant">@color/md_theme_light_secondaryContainer</item>
+        <item name="colorOnSecondary">@color/md_theme_light_onSecondary</item>
+
+        <!-- Status bar and navigation -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+        <!-- Shape appearance -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.HermesAndroid.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.HermesAndroid.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.HermesAndroid.LargeComponent</item>
+
+        <!-- Typography -->
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.HermesAndroid.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.HermesAndroid.HeadlineMedium</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.HermesAndroid.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.HermesAndroid.BodyMedium</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.HermesAndroid.LabelLarge</item>
+    </style>
+
+    <!-- Custom shapes -->
+    <style name="ShapeAppearance.HermesAndroid.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="ShapeAppearance.HermesAndroid.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeAppearance.HermesAndroid.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+
+    <!-- Custom typography -->
+    <style name="TextAppearance.HermesAndroid.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.HermesAndroid.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.HermesAndroid.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextAppearance.HermesAndroid.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextAppearance.HermesAndroid.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+
+    <!-- Chat bubble styles -->
+    <style name="Theme.HermesAndroid.ChatBubble.User" parent="Widget.Material3.CardView">
+        <item name="cardBackgroundColor">@color/md_theme_light_primaryContainer</item>
+        <item name="cardCornerRadius">16dp</item>
+    </style>
+
+    <style name="Theme.HermesAndroid.ChatBubble.Assistant" parent="Widget.Material3.CardView">
+        <item name="cardBackgroundColor">@color/md_theme_light_surfaceContainerHighest</item>
+        <item name="cardCornerRadius">16dp</item>
+    </style>
+
+    <style name="Theme.HermesAndroid.ChatBubble.System" parent="Widget.Material3.CardView">
+        <item name="cardBackgroundColor">@color/md_theme_light_tertiaryContainer</item>
+        <item name="cardCornerRadius">12dp</item>
+    </style>
+
+</resources>

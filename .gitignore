@@ -1,0 +1,38 @@
+# Gradle
+.gradle/
+build/
+app/build/
+*/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Local configuration
+local.properties
+*.keystore
+*.jks
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Generated
+*.class
+*.apk
+*.aab
+*.ap_
+
+# Test
+app/src/test/
+app/src/androidTest/
+
+# Hermes specific
+hermes_database*
