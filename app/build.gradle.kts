@@ -94,10 +94,11 @@ ktlint {
         reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
     }
     outputToConsole = true
-    // Disable Kotlin script checking and generated files
+    // Disable Kotlin script checking and generated DAO files
     filter {
         exclude("**/*.gradle.kts")
-        exclude("**/converters/Converters.kt")
+        exclude("**/converters/**")
+        exclude("**/dao/**")
     }
 }
 
