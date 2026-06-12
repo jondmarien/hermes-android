@@ -116,6 +116,11 @@ jobs:
     needs: lint-and-test
     if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') || github.event.inputs.release == 'true'
     timeout-minutes: 30
+    env:
+      KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+      KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
+      KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
+      KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -142,6 +147,7 @@ jobs:
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > release.keystore
 
       - name: Build Release AAB
+        if: env.KEYSTORE_BASE64 != ''
         env:
           KEYSTORE_PATH: release.keystore
           KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
@@ -150,6 +156,7 @@ jobs:
         run: ./gradlew bundleRelease --no-daemon
 
       - name: Upload Release AAB
+        if: env.KEYSTORE_BASE64 != ''
         uses: actions/upload-artifact@v4
         with:
           name: app-release
