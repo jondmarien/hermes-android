@@ -38,21 +38,7 @@ fun RemoteConfigDialog(
     val isDefault by remember { mutableStateOf(config?.isDefault ?: false) }
     val nameError by remember { mutableStateOf("") }
     val urlError by remember { mutableStateOf("") }
-
-    val confirmAction: () -> Unit = {
-        var valid = true
-        if (name.trim().isEmpty()) {
-            nameError = "Name is required"
-            valid = false
-        }
-        if (baseUrl.trim().isEmpty() || !baseUrl.startsWith("http")) {
-            urlError = "Valid URL required (http:// or https://)"
-            valid = false
-        }
-        if (valid) {
-            onSave(name.trim(), baseUrl.trim(), apiKey.trim(), isDefault)
-        }
-    }
+    val loading by mutableStateOf(isLoading)
 
     androidx.compose.material3.AlertDialog(
         onDismissRequest = onDismiss,
@@ -117,16 +103,27 @@ fun RemoteConfigDialog(
         },
         confirmButton = {
             Button(
-                onClick = confirmAction,
-                enabled = !isLoading
+                onClick = {
+                    var valid = true
+                    if (name.trim().isEmpty()) {
+                        nameError = "Name is required"
+                    }
+                    if (baseUrl.trim().isEmpty() || !baseUrl.startsWith("http")) {
+                        urlError = "Valid URL required (http:// or https://)"
+                    }
+                    if (nameError.isEmpty() && urlError.isEmpty()) {
+                        onSave(name.trim(), baseUrl.trim(), apiKey.trim(), isDefault)
+                    }
+                },
+                enabled = !loading
             ) {
-                if (isLoading) {
+                if (loading) {
                     androidx.compose.material3.CircularProgressIndicator(
                         modifier = Modifier.size(20.dp),
                         color = HermesTheme.colorScheme.onPrimary
                     )
                 } else {
-                    Text(config != null ? "Save" : "Add")
+                    Text(if (config != null) "Save" else "Add")
                 }
             }
         },

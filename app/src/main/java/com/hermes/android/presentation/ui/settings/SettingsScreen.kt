@@ -428,24 +428,17 @@ fun SettingsSelectRow(
         ) {
             options.forEach { (val, label) ->
                 androidx.compose.material3.DropdownMenuItem(
-                    text = {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(text = label)
-                            if (val == value) {
-                                Icon(
-                                    imageVector = androidx.compose.material.icons.filled.Check,
-                                    contentDescription = "Selected",
-                                    tint = HermesTheme.colorScheme.primary
-                                )
-                            }
-                        }
-                    },
+                    text = label,
                     onClick = { onValueChange(val); expanded = false }
-                )
+                ) {
+                    if (val == value) {
+                        Icon(
+                            imageVector = androidx.compose.material.icons.filled.Check,
+                            contentDescription = "Selected",
+                            tint = HermesTheme.colorScheme.primary
+                        )
+                    }
+                }
             }
         }
     )
