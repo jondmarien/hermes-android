@@ -27,6 +27,7 @@ data class Chat(
     val role: MessageRole,
     val content: String,
     val createdAt: Instant = Instant.now(),
+    val updatedAt: Instant = Instant.now(),
     val model: String? = null,
     val finishReason: String? = null,
     val toolCalls: String? = null, // JSON string

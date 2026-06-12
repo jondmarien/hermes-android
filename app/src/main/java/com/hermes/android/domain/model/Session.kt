@@ -41,7 +41,9 @@ enum class ConnectionMode {
 }
 
 @Serializable
+@Entity(tableName = "remote_configs")
 data class RemoteConfig(
+    @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val name: String,
     val baseUrl: String,

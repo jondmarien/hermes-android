@@ -32,6 +32,7 @@ mockk = "1.13.15"
 turbine = "1.0.0"
 composeUiTest = "1.13.0"
 composeUiTestManifest = "1.13.0"
+gson = "2.10.1"
 
 [libraries]
 # Android & Kotlin
@@ -97,7 +98,8 @@ coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coi
 # Permissions
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanistPermissions" }
 
-# Camera & Media
+# Gson
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "cameraView" }
 camera-core = { group = "androidx.camera", name = "camera-core", version = "1.3.0" }
 media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "exoplayer" }

@@ -4,11 +4,11 @@ import com.hermes.android.presentation.viewmodel.MainViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.ActivityRetainedComponent
+import dagger.hilt.components.ActivityComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ActivityRetainedComponent::class)
+@InstallIn(ActivityComponent::class)
 object ViewModelModule {
 
     @Provides

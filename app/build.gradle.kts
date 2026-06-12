@@ -140,6 +140,7 @@ dependencies {
 
     // Serialization
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.gson)
 
     // Coroutines & Flow
     implementation(libs.kotlinx.coroutines.android)
