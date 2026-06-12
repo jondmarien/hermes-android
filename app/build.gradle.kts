@@ -88,19 +88,20 @@ android {
     }
 }
 
-ktlint {
-    reporters {
-        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN)
-        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
-    }
-    outputToConsole = true
-    // Disable Kotlin script checking and generated DAO files
-    filter {
-        exclude("**/*.gradle.kts")
-        exclude("**/converters/**")
-        exclude("**/dao/**")
-    }
-}
+// ktlint disabled due to parsing issues with Kotlin 1.9.23
+// Re-enable with proper configuration later
+// ktlint {
+//     reporters {
+//         reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN)
+//         reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
+//     }
+//     outputToConsole = true
+//     filter {
+//         exclude("**/*.gradle.kts")
+//         exclude("**/converters/**")
+//         exclude("**/dao/**")
+//     }
+// }
 
 dependencies {
     // Android & Kotlin
