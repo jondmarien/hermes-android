@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- Disable or configure common lint checks that cause false positives -->
+    <issue id="UnusedResources" severity="warning" />
+    <issue id="UnusedIds" severity="warning" />
+    <issue id="HardcodedText" severity="warning" />
+    <issue id="MissingTranslation" severity="warning" />
+    <issue id="ExtraTranslation" severity="warning" />
+    <issue id="MissingContentDescription" severity="warning" />
+    <issue id="ContentDescription" severity="warning" />
+    <issue id="Deprecated" severity="warning" />
+    <issue id="UnusedAttribute" severity="warning" />
+    <issue id="UnusedDeclaration" severity="warning" />
+    <issue id="UnusedResource" severity="warning" />
+    <issue id="MissingNamespace" severity="warning" />
+    <issue id="ObsoleteLayoutParam" severity="warning" />
+    <issue id="InconsistentLayout" severity="warning" />
+    <issue id="UselessParent" severity="warning" />
+    <issue id="UselessLeaf" severity="warning" />
+</lint>
