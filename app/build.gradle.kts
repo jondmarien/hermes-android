@@ -94,6 +94,10 @@ ktlint {
         reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
     }
     outputToConsole = true
+    // Disable Kotlin script checking for now (build.gradle.kts parsing issues)
+    filter {
+        exclude("**/*.gradle.kts")
+    }
 }
 
 dependencies {
