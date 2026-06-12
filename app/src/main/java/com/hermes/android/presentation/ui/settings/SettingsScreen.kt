@@ -410,7 +410,6 @@ fun SettingsSelectRow(
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var expanded by remember { mutableStateOf(false) }
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -422,33 +421,13 @@ fun SettingsSelectRow(
             Text(text = title, fontSize = 16.sp)
             Text(text = subtitle, fontSize = 12.sp, color = HermesTheme.colorScheme.onSurfaceVariant)
         }
-        androidx.compose.material3.Menu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false }
-        ) {
-            options.forEach { (val, label) ->
-                androidx.compose.material3.DropdownMenuItem(
-                    text = label,
-                    onClick = { onValueChange(val); expanded = false }
-                ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(text = label)
-                        if (val == value) {
-                            Icon(
-                                imageVector = androidx.compose.material.icons.filled.Check,
-                                contentDescription = "Selected",
-                                tint = HermesTheme.colorScheme.primary
-                            )
-                        }
-                    }
-                }
-            }
-        }
-    )
+        // Current value display with click to change
+        Text(
+            text = options.firstOrNull { it.first == value }?.second ?: value,
+            fontSize = 14.sp,
+            color = HermesTheme.colorScheme.primary
+        )
+    }
 }
 
 @Composable
