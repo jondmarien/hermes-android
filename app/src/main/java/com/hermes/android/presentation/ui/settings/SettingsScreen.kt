@@ -359,7 +359,7 @@ fun TermuxSettingsCard(
             title = "Auto-start Local",
             subtitle = "Automatically start Hermes on app launch",
             checked = autoStart,
-            onCheckedChange = onAutoStartChange
+            onAutoStartChange = onAutoStartChange
         )
         androidx.compose.foundation.layout.Spacer(modifier = Modifier.padding(top = 8.dp))
         SettingsTextRow(
