@@ -70,17 +70,17 @@
     </style>
 
     <!-- Chat bubble styles -->
-    <style name="Theme.HermesAndroid.ChatBubble.User" parent="Widget.Material3.CardView">
+    <style name="Theme.HermesAndroid.ChatBubble.User" parent="Widget.Material3.CardView.Filled">
         <item name="cardBackgroundColor">@color/md_theme_light_primaryContainer</item>
         <item name="cardCornerRadius">16dp</item>
     </style>
 
-    <style name="Theme.HermesAndroid.ChatBubble.Assistant" parent="Widget.Material3.CardView">
+    <style name="Theme.HermesAndroid.ChatBubble.Assistant" parent="Widget.Material3.CardView.Filled">
         <item name="cardBackgroundColor">@color/md_theme_light_surfaceContainerHighest</item>
         <item name="cardCornerRadius">16dp</item>
     </style>
 
-    <style name="Theme.HermesAndroid.ChatBubble.System" parent="Widget.Material3.CardView">
+    <style name="Theme.HermesAndroid.ChatBubble.System" parent="Widget.Material3.CardView.Filled">
         <item name="cardBackgroundColor">@color/md_theme_light_tertiaryContainer</item>
         <item name="cardCornerRadius">12dp</item>
     </style>
