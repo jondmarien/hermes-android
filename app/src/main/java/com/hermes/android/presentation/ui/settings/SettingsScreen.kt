@@ -428,6 +428,7 @@ fun SettingsSelectRow(
         ) {
             options.forEach { (val, label) ->
                 androidx.compose.material3.DropdownMenuItem(
+                    text = label,
                     onClick = { onValueChange(val); expanded = false }
                 ) {
                     Row(
