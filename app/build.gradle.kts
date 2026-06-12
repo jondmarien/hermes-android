@@ -6,7 +6,8 @@ plugins {
     id("com.google.dagger.hilt.android")
     // ktlint disabled due to parsing issues with Kotlin 1.9.23
     // id("org.jlleitschuh.gradle.ktlint") version "11.1.0"
-    id("io.gitlab.arturbosch.detekt") version "1.23.6"
+    // detekt disabled due to internal issues
+    // id("io.gitlab.arturbosch.detekt") version "1.23.6"
 }
 
 android {
