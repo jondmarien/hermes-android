@@ -62,10 +62,10 @@ android {
     kotlinOptions {
         jvmTarget = "17"
         freeCompilerArgs += listOf(
-            "-Xopt-in=kotlin.RequiresOptIn",
-            "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-Xopt-in=androidx.lifecycle.ExperimentalLifecycleApi",
-            "-Xopt-in=androidx.compose.material3.ExperimentalMaterial3Api"
+            "-opt-in=kotlin.RequiresOptIn",
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-opt-in=androidx.lifecycle.ExperimentalLifecycleApi",
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
         )
     }
 

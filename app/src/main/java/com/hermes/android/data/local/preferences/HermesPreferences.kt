@@ -20,9 +20,9 @@ class HermesPreferences @Inject constructor(
 ) {
 
     companion object {
-        private const stringPreferencesKey(name: String) = PreferencesKeys.stringKey(name)
-        private const booleanPreferencesKey(name: String) = PreferencesKeys.booleanKey(name)
-        private const longPreferencesKey(name: String) = PreferencesKeys.longKey(name)
+        private val stringPreferencesKey = { name: String -> PreferencesKeys.stringKey(name) }
+        private val booleanPreferencesKey = { name: String -> PreferencesKeys.booleanKey(name) }
+        private val longPreferencesKey = { name: String -> PreferencesKeys.longKey(name) }
     }
 
     // Keys
@@ -197,11 +197,6 @@ class HermesPreferences @Inject constructor(
         .distinctUntilChanged()
 
     // Remote Config serialization
-    private val json = Json {
-        ignoreUnknownKeys = true
-        isLenient = true
-    }
-
     suspend fun getRemoteConfigs(): List<RemoteConfig> {
         val jsonString = dataStore.data
             .map { it[KEY_REMOTE_CONFIGS_JSON] ?: "[]" }
