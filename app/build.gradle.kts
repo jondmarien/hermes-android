@@ -46,9 +46,9 @@ android {
     signingConfigs {
         create("release") {
             keyAlias = System.getenv("KEYSTORE_KEY_ALIAS") ?: ""
-            keyPassword = System.getenv("KEYSTORE_KEY_PASSWORD")?.toCharArray()
+            keyPassword = System.getenv("KEYSTORE_KEY_PASSWORD")?.toString()?.toCharArray()
             storeFile = System.getenv("KEYSTORE_PATH")?.let { file(it) }
-            storePassword = System.getenv("KEYSTORE_STORE_PASSWORD")?.toCharArray()
+            storePassword = System.getenv("KEYSTORE_STORE_PASSWORD")?.toString()?.toCharArray()
         }
     }
 
@@ -84,18 +84,15 @@ android {
     }
 
     hilt {
-        generateComponents = listOf(
-            "androidx.hilt.navigation.HiltNavigationComponent",
-            "androidx.hilt.navigation.compose.HiltNavigationComposeComponent"
-        )
+        // generateComponents is not needed for modern Hilt
     }
 }
 
 ktlint {
     version = "1.0.0"
     reporters {
-        reporter("plain") {}
-        reporter("checkstyle") {}
+        reporterType = org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN
+        reporterType = org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE
     }
     outputToConsole = true
 }
@@ -191,7 +188,7 @@ kapt {
     }
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions {
         freeCompilerArgs += listOf(
             "-Xopt-in=kotlin.RequiresOptIn",
