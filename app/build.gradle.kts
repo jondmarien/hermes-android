@@ -5,8 +5,8 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kapt)
     alias(libs.plugins.hilt)
-    id("io.gitlab.arturbosch.detekt") version "1.23.6" apply false
-    id("org.jlleitschuh.gradle.ktlint") version "11.1.0" apply false
+    id("org.jlleitschuh.gradle.ktlint") version "11.1.0"
+    id("io.gitlab.arturbosch.detekt") version "1.23.6"
 }
 
 android {
@@ -90,6 +90,15 @@ android {
             "androidx.hilt.navigation.compose.HiltNavigationComposeComponent"
         )
     }
+}
+
+ktlint {
+    version = "1.0.0"
+    reporters {
+        reporter("plain") {}
+        reporter("checkstyle") {}
+    }
+    outputToConsole = true
 }
 
 dependencies {
