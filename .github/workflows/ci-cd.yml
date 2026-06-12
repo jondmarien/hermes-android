@@ -96,6 +96,10 @@ jobs:
         with:
           gradle-version: wrapper
 
+      - name: Accept Android SDK Licenses
+        run: |
+          yes | sdkmanager --licenses || true
+
       - name: Build Debug APK
         run: ./gradlew assembleDebug --no-daemon
 
@@ -127,6 +131,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: wrapper
+
+      - name: Accept Android SDK Licenses
+        run: |
+          yes | sdkmanager --licenses || true
 
       - name: Decode Keystore
         if: env.KEYSTORE_BASE64 != ''
