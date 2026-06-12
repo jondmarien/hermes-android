@@ -216,22 +216,19 @@ fun SessionItem(
                 }
 
                 // Menu button
+                var expanded by remember { mutableStateOf(false) }
                 androidx.compose.material3.Menu(
-                    expanded = mutableStateOf(false),
-                    onDismissRequest = { }
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false }
                 ) {
                     androidx.compose.material3.DropdownMenuItem(
                         text = { Text("Rename") },
-                        onClick = {
-                            onRename()
-                        }
+                        onClick = { onRename(); expanded = false }
                     )
                     if (!isActive) {
                         androidx.compose.material3.DropdownMenuItem(
                             text = { Text("Delete", color = HermesTheme.colorScheme.error) },
-                            onClick = {
-                                onDelete()
-                            }
+                            onClick = { onDelete(); expanded = false }
                         )
                     }
                 }

@@ -39,6 +39,21 @@ fun RemoteConfigDialog(
     val nameError by remember { mutableStateOf("") }
     val urlError by remember { mutableStateOf("") }
 
+    val confirmAction: () -> Unit = {
+        var valid = true
+        if (name.trim().isEmpty()) {
+            nameError = "Name is required"
+            valid = false
+        }
+        if (baseUrl.trim().isEmpty() || !baseUrl.startsWith("http")) {
+            urlError = "Valid URL required (http:// or https://)"
+            valid = false
+        }
+        if (valid) {
+            onSave(name.trim(), baseUrl.trim(), apiKey.trim(), isDefault)
+        }
+    }
+
     androidx.compose.material3.AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(text = if (config == null) "Add Remote Server" else "Edit Remote Server") },
@@ -102,20 +117,7 @@ fun RemoteConfigDialog(
         },
         confirmButton = {
             Button(
-                onClick = {
-                    var valid = true
-                    if (name.trim().isEmpty()) {
-                        nameError = "Name is required"
-                        valid = false
-                    }
-                    if (baseUrl.trim().isEmpty() || !baseUrl.startsWith("http")) {
-                        urlError = "Valid URL required (http:// or https://)"
-                        valid = false
-                    }
-                    if (valid) {
-                        onSave(name.trim(), baseUrl.trim(), apiKey.trim(), isDefault)
-                    }
-                },
+                onClick = confirmAction,
                 enabled = !isLoading
             ) {
                 if (isLoading) {

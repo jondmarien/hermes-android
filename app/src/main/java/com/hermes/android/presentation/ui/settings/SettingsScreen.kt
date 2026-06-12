@@ -410,6 +410,7 @@ fun SettingsSelectRow(
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var expanded by remember { mutableStateOf(false) }
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -422,8 +423,8 @@ fun SettingsSelectRow(
             Text(text = subtitle, fontSize = 12.sp, color = HermesTheme.colorScheme.onSurfaceVariant)
         }
         androidx.compose.material3.Menu(
-            expanded = remember { mutableStateOf(false) },
-            onDismissRequest = { }
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
         ) {
             options.forEach { (val, label) ->
                 androidx.compose.material3.DropdownMenuItem(
@@ -443,7 +444,7 @@ fun SettingsSelectRow(
                             }
                         }
                     },
-                    onClick = { onValueChange(val) }
+                    onClick = { onValueChange(val); expanded = false }
                 )
             }
         }
