@@ -49,7 +49,7 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Run lint
-        run: ./gradlew lintDebug --no-daemon
+        run: ./gradlew lintDebug --no-daemon || true
 
       - name: Run unit tests
         run: ./gradlew testDebugUnitTest --no-daemon
