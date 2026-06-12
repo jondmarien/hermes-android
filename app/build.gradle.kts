@@ -186,10 +186,10 @@ kapt {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions {
         freeCompilerArgs += listOf(
-            "-Xopt-in=kotlin.RequiresOptIn",
-            "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-Xopt-in=androidx.lifecycle.ExperimentalLifecycleApi",
-            "-Xopt-in=androidx.compose.material3.ExperimentalMaterial3Api"
+            "-opt-in=kotlin.RequiresOptIn",
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-opt-in=androidx.lifecycle.ExperimentalLifecycleApi",
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
         )
     }
 }
