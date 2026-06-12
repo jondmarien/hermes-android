@@ -91,8 +91,8 @@ android {
 ktlint {
     version = "1.0.0"
     reporters {
-        plain()
-        checkstyle()
+        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN)
+        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
     }
     outputToConsole = true
 }
