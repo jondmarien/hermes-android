@@ -46,9 +46,9 @@ android {
     signingConfigs {
         create("release") {
             keyAlias = System.getenv("KEYSTORE_KEY_ALIAS") ?: ""
-            keyPassword = System.getenv("KEYSTORE_KEY_PASSWORD")?.toString()?.toCharArray()
+            keyPassword = System.getenv("KEYSTORE_KEY_PASSWORD") ?: ""
             storeFile = System.getenv("KEYSTORE_PATH")?.let { file(it) }
-            storePassword = System.getenv("KEYSTORE_STORE_PASSWORD")?.toString()?.toCharArray()
+            storePassword = System.getenv("KEYSTORE_STORE_PASSWORD") ?: ""
         }
     }
 
@@ -91,8 +91,8 @@ android {
 ktlint {
     version = "1.0.0"
     reporters {
-        reporterType = org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN
-        reporterType = org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE
+        plain()
+        checkstyle()
     }
     outputToConsole = true
 }
