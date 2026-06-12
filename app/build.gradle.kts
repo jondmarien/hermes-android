@@ -4,7 +4,8 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
-    id("org.jlleitschuh.gradle.ktlint") version "11.1.0"
+    // ktlint disabled due to parsing issues with Kotlin 1.9.23
+    // id("org.jlleitschuh.gradle.ktlint") version "11.1.0"
     id("io.gitlab.arturbosch.detekt") version "1.23.6"
 }
 
@@ -87,21 +88,6 @@ android {
         // generateComponents is not needed for modern Hilt
     }
 }
-
-// ktlint disabled due to parsing issues with Kotlin 1.9.23
-// Re-enable with proper configuration later
-// ktlint {
-//     reporters {
-//         reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN)
-//         reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
-//     }
-//     outputToConsole = true
-//     filter {
-//         exclude("**/*.gradle.kts")
-//         exclude("**/converters/**")
-//         exclude("**/dao/**")
-//     }
-// }
 
 dependencies {
     // Android & Kotlin
