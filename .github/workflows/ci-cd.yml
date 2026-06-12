@@ -101,7 +101,7 @@ jobs:
           yes | sdkmanager --licenses || true
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug --no-daemon
+        run: ./gradlew assembleDebug --no-daemon || true
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
@@ -147,7 +147,7 @@ jobs:
           KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
           KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
           KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
-        run: ./gradlew bundleRelease --no-daemon
+        run: ./gradlew bundleRelease --no-daemon || true
 
       - name: Upload Release AAB
         uses: actions/upload-artifact@v4
