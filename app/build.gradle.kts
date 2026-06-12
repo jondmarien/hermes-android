@@ -100,6 +100,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.window)
     implementation(libs.androidx.material3)
+    implementation(libs.material)
 
     // Room Database
     implementation(libs.room.runtime)
