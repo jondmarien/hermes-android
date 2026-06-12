@@ -6,6 +6,8 @@ import com.hermes.android.domain.repository.ChatMessage
 import com.hermes.android.domain.repository.ConnectionTestResult
 import com.hermes.android.domain.repository.ModelInfo
 import com.hermes.android.domain.repository.ResponsesApiResponse
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -31,7 +33,7 @@ interface HermesApiService {
     ): Capabilities
 }
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class ChatCompletionRequest(
     val model: String,
     val messages: List<ChatMessage>,
@@ -40,9 +42,9 @@ data class ChatCompletionRequest(
     val maxTokens: Int? = null
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class ModelsResponse(
-    val object: String,
+    @SerialName("object") val objectType: String,
     val data: List<ModelInfo>
 )
 
@@ -67,7 +69,7 @@ interface HermesResponsesApiService {
     ): DeleteResponse
 }
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class ResponsesRequest(
     val model: String,
     val input: String,
@@ -78,10 +80,10 @@ data class ResponsesRequest(
     val stream: Boolean = false
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class DeleteResponse(
     val id: String,
-    val object: String,
+    @SerialName("object") val objectType: String,
     val deleted: Boolean
 )
 
@@ -97,7 +99,7 @@ interface HermesHealthService {
     suspend fun livenessCheck(): HealthResponse
 }
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class HealthResponse(
     val status: String,
     val version: String? = null,

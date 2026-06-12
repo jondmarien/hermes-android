@@ -326,22 +326,19 @@ fun RemoteConfigCard(
                         Text(text = config.baseUrl, fontSize = 12.sp, color = HermesTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis)
                     }
                 }
-                androidx.compose.material3.Menu(
-                    expanded = remember { mutableStateOf(false) },
-                    onDismissRequest = { }, // handled by menu
+                // Use a simple row with buttons instead of Menu for compatibility
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    androidx.compose.material3.DropdownMenuItem(
-                        text = { Text("Set as Default") },
-                        onClick = onSetDefault
-                    )
-                    androidx.compose.material3.DropdownMenuItem(
-                        text = { Text("Test Connection") },
-                        onClick = onTest
-                    )
-                    androidx.compose.material3.DropdownMenuItem(
-                        text = { Text("Delete", color = HermesTheme.colorScheme.error) },
-                        onClick = onDelete
-                    )
+                    androidx.compose.material3.OutlinedButton(onClick = onTest) {
+                        Text("Test")
+                    }
+                    androidx.compose.material3.TextButton(onClick = onSetDefault) {
+                        Text("Set Default")
+                    }
+                    androidx.compose.material3.TextButton(onClick = onDelete) {
+                        Text("Delete", color = HermesTheme.colorScheme.error)
+                    }
                 }
             }
         }

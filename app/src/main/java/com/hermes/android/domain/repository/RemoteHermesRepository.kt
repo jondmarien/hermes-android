@@ -3,6 +3,8 @@ package com.hermes.android.domain.repository
 import com.hermes.android.domain.model.RemoteConfig
 import com.hermes.android.domain.model.TermuxStatus
 import kotlinx.coroutines.flow.Flow
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 interface RemoteHermesRepository {
     suspend fun sendMessage(
@@ -37,101 +39,101 @@ interface RemoteHermesRepository {
     suspend fun getCapabilities(baseUrl: String, apiKey: String): Result<Capabilities>
 }
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class ChatMessage(
     val role: String,
     val content: String,
     val name: String? = null
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class ChatCompletionResponse(
     val id: String,
-    val object: String,
+    @SerialName("object") val objectType: String,
     val created: Long,
     val model: String,
     val choices: List<Choice>,
     val usage: Usage?
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class Choice(
     val index: Int,
     val message: ChatMessage,
     val finishReason: String?
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class Usage(
     val promptTokens: Int,
     val completionTokens: Int,
     val totalTokens: Int
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class StreamChunk(
     val id: String,
-    val object: String,
+    @SerialName("object") val objectType: String,
     val created: Long,
     val model: String,
     val choices: List<StreamChoice>
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class StreamChoice(
     val index: Int,
     val delta: Delta,
     val finishReason: String?
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class Delta(
     val role: String?,
     val content: String?
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class ResponsesApiResponse(
     val id: String,
-    val object: String,
+    @SerialName("object") val objectType: String,
     val status: String,
     val model: String,
     val output: List<OutputItem>,
     val usage: Usage?
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 sealed class OutputItem {
-    @kotlinx.serialization.Serializable
+    @Serializable
     data class Message(
-        val type: String,
+        @SerialName("type") val type_: String,
         val role: String,
         val content: List<ContentPart>
     ) : OutputItem()
 
-    @kotlinx.serialization.Serializable
+    @Serializable
     data class FunctionCall(
-        val type: String,
+        @SerialName("type") val type_: String,
         val name: String,
         val arguments: String,
         val callId: String
     ) : OutputItem()
 
-    @kotlinx.serialization.Serializable
+    @Serializable
     data class FunctionCallOutput(
-        val type: String,
+        @SerialName("type") val type_: String,
         val callId: String,
         val output: String
     ) : OutputItem()
 }
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class ContentPart(
-    val type: String,
+    @SerialName("type") val type_: String,
     val text: String?
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class ConnectionTestResult(
     val success: Boolean,
     val latencyMs: Long,
@@ -139,29 +141,29 @@ data class ConnectionTestResult(
     val error: String?
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class ModelInfo(
     val id: String,
-    val object: String,
+    @SerialName("object") val objectType: String,
     val ownedBy: String
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class Capabilities(
-    val object: String,
+    @SerialName("object") val objectType: String,
     val platform: String,
     val model: String,
     val auth: AuthInfo,
     val features: Features
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class AuthInfo(
     val type: String,
     val required: Boolean
 )
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class Features(
     val chatCompletions: Boolean,
     val responsesApi: Boolean,

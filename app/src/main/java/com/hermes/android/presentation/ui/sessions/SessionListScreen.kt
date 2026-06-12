@@ -90,7 +90,6 @@ fun SessionListScreen(
                         isActive = session.id == activeSessionId,
                         onClick = { onSessionClick(session) },
                         onDelete = {
-                            // Show confirmation
                             onDeleteSession(session.id)
                         },
                         onRename = {
@@ -146,22 +145,21 @@ fun SessionItem(
     modifier: Modifier = Modifier
 ) {
     val modeIcon = when (session.mode) {
-        com.hermes.android.domain.model.ConnectionMode.LOCAL ->
+        ConnectionMode.LOCAL ->
             androidx.compose.material.icons.filled.PhoneAndroid
-        com.hermes.android.domain.model.ConnectionMode.REMOTE ->
+        ConnectionMode.REMOTE ->
             androidx.compose.material.icons.filled.Cloud
     }
 
     val modeColor = when (session.mode) {
-        com.hermes.android.domain.model.ConnectionMode.LOCAL ->
+        ConnectionMode.LOCAL ->
             HermesTheme.colorScheme.tertiary
-        com.hermes.android.domain.model.ConnectionMode.REMOTE ->
+        ConnectionMode.REMOTE ->
             HermesTheme.colorScheme.primary
     }
 
     Card(
         modifier = modifier
-            .fillMaxWidth()
             .fillMaxWidth()
             .padding(vertical = 4.dp)
             .then(
@@ -219,31 +217,22 @@ fun SessionItem(
 
                 // Menu button
                 androidx.compose.material3.Menu(
-                    expanded = mutableStateOf(false).also { menuExpanded ->
-                        androidx.compose.material3.IconButton(onClick = { menuExpanded.value = !menuExpanded.value }) {
-                            Icon(
-                                imageVector = androidx.compose.material.icons.filled.MoreVert,
-                                contentDescription = "More options"
-                            )
+                    expanded = mutableStateOf(false),
+                    onDismissRequest = { }
+                ) {
+                    androidx.compose.material3.DropdownMenuItem(
+                        text = { Text("Rename") },
+                        onClick = {
+                            onRename()
                         }
-                        onDismissRequest = { menuExpanded.value = false }
-                    ) {
+                    )
+                    if (!isActive) {
                         androidx.compose.material3.DropdownMenuItem(
-                            text = { Text("Rename") },
+                            text = { Text("Delete", color = HermesTheme.colorScheme.error) },
                             onClick = {
-                                onRename()
-                                (remember { mutableStateOf(false) }).value = false
+                                onDelete()
                             }
                         )
-                        if (!isActive) {
-                            androidx.compose.material3.DropdownMenuItem(
-                                text = { Text("Delete", color = HermesTheme.colorScheme.error) },
-                                onClick = {
-                                    onDelete()
-                                    (remember { mutableStateOf(false) }).value = false
-                                }
-                            )
-                        }
                     }
                 }
             }
