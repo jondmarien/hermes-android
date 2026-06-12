@@ -1,10 +1,5 @@
 plugins {
     alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.kotlin.android) apply false
-    alias(libs.plugins.kotlin.compose) apply false
-    alias(libs.plugins.kotlin.serialization) apply false
-    alias(libs.plugins.kapt) apply false
-    alias(libs.plugins.hilt) apply false
 }
 
 buildscript {
@@ -12,5 +7,12 @@ buildscript {
         google()
         mavenCentral()
         gradlePluginPortal()
+    }
+    dependencies {
+        classpath("org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin:1.9.23")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.23")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:1.9.23")
+        classpath("com.google.devtools.kapt:com.google.devtools.kapt.gradle.plugin:1.9.23")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.50")
     }
 }
